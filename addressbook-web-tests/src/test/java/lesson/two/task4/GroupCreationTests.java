@@ -17,31 +17,55 @@ public class GroupCreationTests {
         wb = new ChromeDriver();
         wb.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         wb.get("http://localhost/addressbook/");
+        login("admin", "secret");
+    }
+
+    private void login(String username, String password) {
         wb.findElement(By.name("user")).click();
         wb.findElement(By.name("user")).clear();
-        wb.findElement(By.name("user")).sendKeys("admin");
+        wb.findElement(By.name("user")).sendKeys(username);
         wb.findElement(By.name("pass")).click();
         wb.findElement(By.name("pass")).clear();
-        wb.findElement(By.name("pass")).sendKeys("secret");
+        wb.findElement(By.name("pass")).sendKeys(password);
         wb.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
     @Test
     public void testGroupCreation() throws Exception {
-        wb.findElement(By.linkText("groups")).click();
-        wb.get("http://localhost/addressbook/group.php");
-        wb.findElement(By.name("new")).click();
+        gotoGroupPage();
+        initGroupCreation();
+        fillGroupForm(new GroupData("some test group from recorder", "some header from recorder", "some footer from recorder"));
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    private void returnToGroupPage() {
+        wb.findElement(By.linkText("group page")).click();
+    }
+
+    private void submitGroupCreation() {
+        wb.findElement(By.name("submit")).click();
+    }
+
+    private void fillGroupForm(GroupData groupData) {
         wb.findElement(By.name("group_name")).click();
         wb.findElement(By.name("group_name")).clear();
-        wb.findElement(By.name("group_name")).sendKeys("some test group from recorder");
+        wb.findElement(By.name("group_name")).sendKeys(groupData.getName());
         wb.findElement(By.name("group_header")).click();
         wb.findElement(By.name("group_header")).clear();
-        wb.findElement(By.name("group_header")).sendKeys("some header from recorder");
+        wb.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
         wb.findElement(By.name("group_footer")).click();
         wb.findElement(By.name("group_footer")).clear();
-        wb.findElement(By.name("group_footer")).sendKeys("some footer from recorder");
-        wb.findElement(By.name("submit")).click();
-        wb.findElement(By.linkText("group page")).click();
+        wb.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    }
+
+    private void initGroupCreation() {
+        wb.findElement(By.name("new")).click();
+    }
+
+    private void gotoGroupPage() {
+        wb.findElement(By.linkText("groups")).click();
+        wb.get("http://localhost/addressbook/group.php");
     }
 
     @AfterMethod(alwaysRun = true)
