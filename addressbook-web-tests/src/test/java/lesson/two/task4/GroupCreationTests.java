@@ -18,19 +18,13 @@ import org.apache.commons.io.FileUtils;
 
 public class GroupCreationTests {
     private WebDriver driver;
-    private String baseUrl;
-    private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
-    private JavascriptExecutor js;
 
     @BeforeClass(alwaysRun = true)
     public void setUp() throws Exception {
         // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
         System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
         driver = new ChromeDriver();
-        baseUrl = "https://www.google.com/";
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        js = (JavascriptExecutor) driver;
     }
 
     @Test
@@ -63,10 +57,6 @@ public class GroupCreationTests {
     @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
         driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
     }
 
     private boolean isElementPresent(By by) {
@@ -84,21 +74,6 @@ public class GroupCreationTests {
             return true;
         } catch (NoAlertPresentException e) {
             return false;
-        }
-    }
-
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
         }
     }
 }
