@@ -16,10 +16,6 @@ public class GroupCreationTests {
         System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
         wb = new ChromeDriver();
         wb.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-    }
-
-    @Test
-    public void testGroupCreation() throws Exception {
         wb.get("http://localhost/addressbook/");
         wb.findElement(By.name("user")).click();
         wb.findElement(By.name("user")).clear();
@@ -28,6 +24,10 @@ public class GroupCreationTests {
         wb.findElement(By.name("pass")).clear();
         wb.findElement(By.name("pass")).sendKeys("secret");
         wb.findElement(By.xpath("//input[@value='Login']")).click();
+    }
+
+    @Test
+    public void testGroupCreation() throws Exception {
         wb.findElement(By.linkText("groups")).click();
         wb.get("http://localhost/addressbook/group.php");
         wb.findElement(By.name("new")).click();
@@ -42,11 +42,11 @@ public class GroupCreationTests {
         wb.findElement(By.name("group_footer")).sendKeys("some footer from recorder");
         wb.findElement(By.name("submit")).click();
         wb.findElement(By.linkText("group page")).click();
-        wb.findElement(By.linkText("Logout")).click();
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
+        wb.findElement(By.linkText("Logout")).click();
         wb.quit();
     }
 
