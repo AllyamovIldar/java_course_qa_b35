@@ -8,8 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class ApplicationManager {
-
-    protected WebDriver wd;
+    WebDriver wd;
+    private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
 
     public void init() {
@@ -19,6 +19,7 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
+        navigationHelper = new NavigationHelper(wd);
         login("admin", "secret");
     }
 
@@ -80,11 +81,6 @@ public class ApplicationManager {
         wd.findElement(By.linkText("add new")).click();
     }
 
-    public void gotoGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
-        wd.get("http://localhost/addressbook/group.php");
-    }
-
     public void stop() {
         wd.findElement(By.linkText("Logout")).click();
         wd.quit();
@@ -92,5 +88,9 @@ public class ApplicationManager {
 
     public GroupHelper getGroupHelper() {
         return groupHelper;
+    }
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
     }
 }
