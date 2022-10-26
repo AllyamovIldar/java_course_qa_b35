@@ -1,17 +1,15 @@
 package lesson.two.task4.appmanager;
 
+import lesson.two.task4.tests.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavigationHelper {
-    private WebDriver wd;
-
+public class NavigationHelper extends HelperBase {
     public NavigationHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void gotoGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
-        wd.get("http://localhost/addressbook/group.php");
+        click(By.linkText("groups"));
     }
 }

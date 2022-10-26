@@ -4,58 +4,35 @@ import lesson.two.task4.model.AddressData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ContactHelper {
-    private WebDriver wd;
-
+public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
+
     public void returnToHomePage() {
-        wd.findElement(By.linkText("home page")).click();
+        click(By.linkText("home page"));
     }
 
     public void submitAddressCreation() {
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     public void fillAddressForm(AddressData addressData) {
-        wd.findElement(By.name("firstname")).click();
-        wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(addressData.getFirstname());
-        wd.findElement(By.name("middlename")).click();
-        wd.findElement(By.name("middlename")).clear();
-        wd.findElement(By.name("middlename")).sendKeys(addressData.getMiddlename());
-        wd.findElement(By.name("lastname")).click();
-        wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(addressData.getLastname());
-        wd.findElement(By.name("company")).click();
-        wd.findElement(By.name("company")).clear();
-        wd.findElement(By.name("company")).sendKeys(addressData.getCompany());
-        wd.findElement(By.name("address")).click();
-        wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(addressData.getAddress());
-        wd.findElement(By.name("home")).click();
-        wd.findElement(By.name("home")).clear();
-        wd.findElement(By.name("home")).sendKeys(addressData.getHomePhone());
-        wd.findElement(By.name("mobile")).click();
-        wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(addressData.getMobilePhone());
-        wd.findElement(By.name("work")).click();
-        wd.findElement(By.name("work")).clear();
-        wd.findElement(By.name("work")).sendKeys(addressData.getWorkPhone());
-        wd.findElement(By.name("email")).click();
-        wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys(addressData.getEmail());
-        wd.findElement(By.name("email2")).click();
-        wd.findElement(By.name("email2")).clear();
-        wd.findElement(By.name("email2")).sendKeys(addressData.getEmail2());
-        wd.findElement(By.name("email3")).click();
-        wd.findElement(By.name("email3")).clear();
-        wd.findElement(By.name("email3")).sendKeys(addressData.getEmail3());
+        type(By.name("firstname"), addressData.getFirstname());
+        type(By.name("middlename"), addressData.getMiddlename());
+        type(By.name("lastname"), addressData.getLastname());
+        type(By.name("company"), addressData.getCompany());
+        type(By.name("address"), addressData.getAddress());
+        type(By.name("home"), addressData.getHomePhone());
+        type(By.name("mobile"), addressData.getMobilePhone());
+        type(By.name("work"), addressData.getWorkPhone());
+        type(By.name("email"), addressData.getEmail());
+        type(By.name("email2"), addressData.getEmail2());
+        type(By.name("email3"), addressData.getEmail3());
     }
 
     public void gotoAddressPage() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
 }
