@@ -77,17 +77,17 @@ public class ApplicationManager {
     }
 
     public void gotoAddressPage() {
-        groupHelper.wd.findElement(By.linkText("add new")).click();
+        wd.findElement(By.linkText("add new")).click();
     }
 
     public void gotoGroupPage() {
-        groupHelper.wd.findElement(By.linkText("groups")).click();
-        groupHelper.wd.get("http://localhost/addressbook/group.php");
+        wd.findElement(By.linkText("groups")).click();
+        wd.get("http://localhost/addressbook/group.php");
     }
 
     public void stop() {
-        groupHelper.wd.findElement(By.linkText("Logout")).click();
-        groupHelper.wd.quit();
+        wd.findElement(By.linkText("Logout")).click();
+        wd.quit();
     }
 
     public GroupHelper getGroupHelper() {
