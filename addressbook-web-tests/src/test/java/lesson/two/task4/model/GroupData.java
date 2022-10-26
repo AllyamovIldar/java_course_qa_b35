@@ -1,4 +1,4 @@
-package lesson.two.task4;
+package lesson.two.task4.model;
 
 public class GroupData {
     private final String name;

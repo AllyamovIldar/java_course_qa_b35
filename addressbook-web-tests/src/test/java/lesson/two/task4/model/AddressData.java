@@ -1,4 +1,4 @@
-package lesson.two.task4;
+package lesson.two.task4.model;
 
 public class AddressData {
     private final String firstname;
