@@ -1,17 +1,16 @@
 package lesson.two.task4.appmanager;
 
 import lesson.two.task4.model.AddressData;
-import lesson.two.task4.model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
 public class ApplicationManager {
-    private WebDriver wd;
+
+    protected WebDriver wd;
+    private GroupHelper groupHelper;
 
     public void init() {
         // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
@@ -19,6 +18,7 @@ public class ApplicationManager {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         wd.get("http://localhost/addressbook/");
+        groupHelper = new GroupHelper(wd);
         login("admin", "secret");
     }
 
@@ -77,58 +77,20 @@ public class ApplicationManager {
     }
 
     public void gotoAddressPage() {
-        wd.findElement(By.linkText("add new")).click();
-    }
-
-    public void returnToGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
-    }
-
-    public void submitGroupCreation() {
-        wd.findElement(By.name("submit")).click();
-    }
-
-    public void fillGroupForm(GroupData groupData) {
-        wd.findElement(By.name("group_name")).click();
-        wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-        wd.findElement(By.name("group_header")).click();
-        wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-        wd.findElement(By.name("group_footer")).click();
-        wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-    }
-
-    public void initGroupCreation() {
-        wd.findElement(By.name("new")).click();
+        groupHelper.wd.findElement(By.linkText("add new")).click();
     }
 
     public void gotoGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
-        wd.get("http://localhost/addressbook/group.php");
+        groupHelper.wd.findElement(By.linkText("groups")).click();
+        groupHelper.wd.get("http://localhost/addressbook/group.php");
     }
 
     public void stop() {
-        wd.findElement(By.linkText("Logout")).click();
-        wd.quit();
+        groupHelper.wd.findElement(By.linkText("Logout")).click();
+        groupHelper.wd.quit();
     }
 
-    public boolean isElementPresent(By by) {
-        try {
-            wd.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-    public boolean isAlertPresent() {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
     }
 }

@@ -9,10 +9,10 @@ public class GroupAndAddressCreationTests extends TestBase {
     @Test
     public void testGroupCreation() throws Exception {
         app.gotoGroupPage();
-        app.initGroupCreation();
-        app.fillGroupForm(new GroupData("some test group from recorder", "some header from recorder", "some footer from recorder"));
-        app.submitGroupCreation();
-        app.returnToGroupPage();
+        app.getGroupHelper().initGroupCreation();
+        app.getGroupHelper().fillGroupForm(new GroupData("some test group from recorder", "some header from recorder", "some footer from recorder"));
+        app.getGroupHelper().submitGroupCreation();
+        app.getGroupHelper().returnToGroupPage();
     }
 
     @Test
