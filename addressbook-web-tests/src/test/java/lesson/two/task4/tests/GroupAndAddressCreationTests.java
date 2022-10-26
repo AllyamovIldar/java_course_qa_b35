@@ -17,10 +17,10 @@ public class GroupAndAddressCreationTests extends TestBase {
 
     @Test
     public void testAddressCreation() throws Exception {
-        app.gotoAddressPage();
-        app.fillAddressForm(new AddressData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
-        app.submitAddressCreation();
-        app.returnToHomePage();
+        app.getContactHelper().gotoAddressPage();
+        app.getContactHelper().fillAddressForm(new AddressData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
+        app.getContactHelper().submitAddressCreation();
+        app.getContactHelper().returnToHomePage();
     }
 
 }
