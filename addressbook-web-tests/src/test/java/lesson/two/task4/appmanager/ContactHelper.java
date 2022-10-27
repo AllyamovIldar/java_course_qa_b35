@@ -46,4 +46,10 @@ public class ContactHelper extends HelperBase {
     public void selectAddress() {
         click(By.name("selected[]"));
     }
+
+    public void initAddressDeletion() {
+        click(By.xpath("//img[@alt='Details']"));
+        click(By.name("modifiy"));
+        click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
+    }
 }
