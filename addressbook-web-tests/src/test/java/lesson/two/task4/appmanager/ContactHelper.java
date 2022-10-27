@@ -35,4 +35,15 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
+    public void initAddressModification() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitAddressModification() {
+        click(By.name("update"));
+    }
+
+    public void selectAddress() {
+        click(By.name("selected[]"));
+    }
 }
