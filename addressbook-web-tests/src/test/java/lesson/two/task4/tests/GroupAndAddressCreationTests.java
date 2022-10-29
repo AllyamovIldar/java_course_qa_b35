@@ -10,7 +10,7 @@ public class GroupAndAddressCreationTests extends TestBase {
     public void testGroupCreation() throws Exception {
         app.getNavigationHelper().gotoGroupPage();
         app.getGroupHelper().initGroupCreation();
-        app.getGroupHelper().fillGroupForm(new GroupData("some test group from recorder", "some header from recorder", "some footer from recorder"));
+        app.getGroupHelper().fillGroupForm(new GroupData("some test group from recorder", "some header from recorder (test existing)", "some footer from recorder"));
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().returnToGroupPage();
     }
