@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Browser;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class ApplicationManager {
     WebDriver wd;
@@ -21,11 +22,11 @@ public class ApplicationManager {
     }
 
     public void init() {
-        if (browser == Browser.CHROME){
+        if (Objects.equals(browser, Browser.CHROME)){
             // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
             System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
             wd = new ChromeDriver();
-        } else if (browser == Browser.FIREFOX) {
+        } else if (Objects.equals(browser, Browser.FIREFOX)) {
             // Драйвер для Firefox взять отсюда (https://github.com/mozilla/geckodriver/releases) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
             System.setProperty("webdriver.gecko.driver", "C:\\Windows\\System32\\geckodriver.exe");
             wd = new FirefoxDriver();
