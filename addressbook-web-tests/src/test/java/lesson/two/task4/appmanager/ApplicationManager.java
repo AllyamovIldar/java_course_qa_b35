@@ -4,6 +4,8 @@ import lesson.two.task4.model.AddressData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.Browser;
 
 import java.time.Duration;
 
@@ -12,11 +14,22 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
+    private Browser browser;
+
+    public ApplicationManager(Browser browser) {
+        this.browser = browser;
+    }
 
     public void init() {
-        // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
-        System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
-        wd = new ChromeDriver();
+        if (browser == Browser.CHROME){
+            // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
+            System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
+            wd = new ChromeDriver();
+        } else if (browser == Browser.FIREFOX) {
+            // Драйвер для Firefox взять отсюда (https://github.com/mozilla/geckodriver/releases) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
+            System.setProperty("webdriver.gecko.driver", "C:\\Windows\\System32\\geckodriver.exe");
+            wd = new FirefoxDriver();
+        }
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
