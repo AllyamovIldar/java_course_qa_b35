@@ -52,4 +52,15 @@ public class ContactHelper extends HelperBase {
         click(By.name("modifiy"));
         click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
     }
+
+    public void createAddress(AddressData address) {
+        gotoAddressPage();
+        fillAddressForm(address);
+        submitAddressCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAnAddress() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
