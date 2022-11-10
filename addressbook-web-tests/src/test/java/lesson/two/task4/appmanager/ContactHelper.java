@@ -43,8 +43,8 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void selectAddress() {
-        click(By.name("selected[]"));
+    public void selectAddress(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void initAddressDeletion() {
