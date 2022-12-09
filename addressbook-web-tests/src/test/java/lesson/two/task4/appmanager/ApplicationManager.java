@@ -1,6 +1,5 @@
 package lesson.two.task4.appmanager;
 
-import lesson.two.task4.model.AddressData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +21,7 @@ public class ApplicationManager {
     }
 
     public void init() {
-        if (Objects.equals(browser, Browser.CHROME)){
+        if (Objects.equals(browser, Browser.CHROME)) {
             // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
             System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
             wd = new ChromeDriver();

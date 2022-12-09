@@ -1,6 +1,6 @@
 package lesson.two.task4.model;
 
-public class AddressData {
+public class ContactData {
     private final String firstname;
     private final String middlename;
     private final String lastname;
@@ -14,7 +14,7 @@ public class AddressData {
     private final String email3;
 
 
-    public AddressData(String firstname, String middlename, String lastname, String company, String address, String homePhone, String mobilePhone, String workPhone, String email, String email2, String email3) {
+    public ContactData(String firstname, String middlename, String lastname, String company, String address, String homePhone, String mobilePhone, String workPhone, String email, String email2, String email3) {
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;

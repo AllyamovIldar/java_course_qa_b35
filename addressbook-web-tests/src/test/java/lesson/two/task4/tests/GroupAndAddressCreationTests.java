@@ -1,12 +1,11 @@
 package lesson.two.task4.tests;
 
-import lesson.two.task4.model.AddressData;
+import lesson.two.task4.model.ContactData;
 import lesson.two.task4.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupAndAddressCreationTests extends TestBase {
@@ -31,7 +30,7 @@ public class GroupAndAddressCreationTests extends TestBase {
     public void testAddressCreation() throws Exception {
         //List<AddressData> before = app.getContactHelper().getContactList();
         int before = app.getContactHelper().getContactCount();
-        app.getContactHelper().createAddress(new AddressData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
+        app.getContactHelper().createContact(new ContactData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
         //List<AddressData> after = app.getContactHelper().getContactList();
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals(after, before + 1);
