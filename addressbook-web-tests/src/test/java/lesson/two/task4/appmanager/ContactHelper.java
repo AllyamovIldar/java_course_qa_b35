@@ -4,7 +4,6 @@ import lesson.two.task4.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import lesson.two.task4.model.ContactData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,20 +62,26 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         gotoContactPage();
         fillContactForm(contact);
         submitContactCreation();
         returnToHomePage();
     }
 
-    public void modifyContact(ContactData contact, int index) {
+    public void modify(ContactData contact, int index) {
         selectContact(index);
         initContactModification();
         fillContactForm(contact);
         submitContactModification();
         returnToHome();
     }
+
+    public void delete(int index) {
+        selectContact(index);
+        initContactDeletion();
+    }
+
     public boolean isThereAnContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -85,7 +90,7 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {

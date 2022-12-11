@@ -8,20 +8,20 @@ import org.testng.annotations.Test;
 public class ContactDeletionTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-        app.getContactHelper().returnToHome();
-        if (!app.getContactHelper().isThereAnContact()) {
-            app.getContactHelper().createContact(new ContactData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
+        app.contact().returnToHome();
+        if (app.contact().list().size() == 0) {
+            app.contact().create(new ContactData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
         }
-        app.getContactHelper().returnToHome();
+        app.contact().returnToHome();
     }
+
     @Test
     public void testContactDeletion() {
-        int before = app.getContactHelper().getContactCount();
-        app.getContactHelper().returnToHome();
-        app.getContactHelper().selectContact(before - 1);
-        app.getContactHelper().initContactDeletion();
-        app.goTo().gotoHomePage();
-        int after = app.getContactHelper().getContactCount();
+        int before = app.contact().getContactCount();
+        app.contact().returnToHome();
+        int index = before - 1;
+        app.contact().delete(index);
+        int after = app.contact().getContactCount();
         Assert.assertEquals(after, before - 1);
     }
 }
