@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 import java.util.Comparator;
 import java.util.List;
 
-public class GroupAndAddressCreationTests extends TestBase {
+public class GroupAndContactCreationTests extends TestBase {
 
     @Test
     public void testGroupCreation() throws Exception {
@@ -27,14 +27,19 @@ public class GroupAndAddressCreationTests extends TestBase {
     }
 
     @Test
-    public void testAddressCreation() throws Exception {
-        //List<AddressData> before = app.getContactHelper().getContactList();
-        int before = app.getContactHelper().getContactCount();
-        app.getContactHelper().createContact(new ContactData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com"));
-        //List<AddressData> after = app.getContactHelper().getContactList();
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before + 1);
-        // Assert.assertEquals(after.size(), before.size() + 1);
+    public void testContactCreation() throws Exception {
+        app.getContactHelper().returnToHome();
+        List<ContactData> before = app.getContactHelper().getContactList();
+        ContactData contact = new ContactData("FirstNameExample", "MiddleNameExample", "LastNameExample", "TestCompany", "TestAddress", "84951112233", "89995554433", "88009876543", "testmail1@mail.com", "testmail2@email.com", "testmail3@mailtest.com");
+        app.getContactHelper().createContact(contact);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() + 1);
+
+        before.add(contact);
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(after, before);
     }
 
 }
