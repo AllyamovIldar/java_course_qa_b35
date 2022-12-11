@@ -12,7 +12,7 @@ public class GroupDeletionTests extends TestBase {
     public void ensurePreconditions() {
         app.goTo().groupPage();
         if (app.group().list().size() == 0) {
-            app.group().create(new GroupData("some test group from recorder", "some header from recorder (test existing)", "some footer from recorder"));
+            app.group().create(new GroupData().withName("some test group from recorder").withHeader("some header from recorder (test existing)").withFooter("some footer from recorder"));
         }
     }
 
