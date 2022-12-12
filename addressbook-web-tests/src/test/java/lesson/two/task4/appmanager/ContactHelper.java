@@ -4,7 +4,6 @@ import lesson.two.task4.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import lesson.two.task4.model.ContactData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +44,8 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitContactModification() {
