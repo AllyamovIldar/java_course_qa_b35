@@ -23,6 +23,7 @@ public class GroupDeletionTests extends TestBase {
         app.group().delete(index);
         List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size() - 1);
+
         before.remove(index);
         Assert.assertEquals(before, after);
     }

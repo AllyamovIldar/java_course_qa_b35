@@ -44,8 +44,8 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+        ((WebElement) this.wd.findElements(By.xpath("//img[@alt='Edit']")).get(index)).click();
     }
 
     public void submitContactModification() {
@@ -57,9 +57,11 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactDeletion() {
-        click(By.xpath("//img[@alt='Details']"));
-        click(By.name("modifiy"));
-        click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
+        this.click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void dialogAccept() {
+        this.wd.switchTo().alert().accept();
     }
 
     public void create(ContactData contact) {
@@ -71,7 +73,7 @@ public class ContactHelper extends HelperBase {
 
     public void modify(ContactData contact, int index) {
         selectContact(index);
-        initContactModification();
+        initContactModification(index);
         fillContactForm(contact);
         submitContactModification();
         returnToHome();
@@ -80,6 +82,7 @@ public class ContactHelper extends HelperBase {
     public void delete(int index) {
         selectContact(index);
         initContactDeletion();
+        dialogAccept();
     }
 
     public boolean isThereAnContact() {
