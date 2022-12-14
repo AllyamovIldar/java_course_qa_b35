@@ -3,10 +3,8 @@ package lesson.two.task4.tests;
 import lesson.two.task4.model.ContactData;
 import lesson.two.task4.model.GroupData;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class GroupAndContactCreationTests extends TestBase {

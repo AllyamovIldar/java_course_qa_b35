@@ -1,12 +1,10 @@
 package lesson.two.task4.appmanager;
 
 import lesson.two.task4.model.ContactData;
-import lesson.two.task4.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,12 +53,8 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void selectContact(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
-    }
-
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id +"']")).click();
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void initContactDeletion() {
@@ -85,12 +79,6 @@ public class ContactHelper extends HelperBase {
         returnToHome();
     }
 
-    public void delete(int index) {
-        selectContact(index);
-        initContactDeletion();
-        dialogAccept();
-    }
-
     public void delete(ContactData group) {
         selectContactById(group.getId());
         initContactDeletion();
@@ -103,19 +91,6 @@ public class ContactHelper extends HelperBase {
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
-    }
-
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("entry"));
-        for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            List<WebElement> cells = element.findElements(By.tagName("td"));
-            String firstname = cells.get(2).getText();
-            String lastname = cells.get(1).getText();
-            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
-        }
-        return contacts;
     }
 
     public Set<ContactData> all() {
