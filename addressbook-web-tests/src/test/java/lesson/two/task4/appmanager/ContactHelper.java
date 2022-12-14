@@ -1,6 +1,7 @@
 package lesson.two.task4.appmanager;
 
 import lesson.two.task4.model.ContactData;
+import lesson.two.task4.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -58,6 +59,10 @@ public class ContactHelper extends HelperBase {
         wd.findElements(By.name("selected[]")).get(index).click();
     }
 
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+
     public void initContactDeletion() {
         this.click(By.xpath("//input[@value='Delete']"));
     }
@@ -87,6 +92,12 @@ public class ContactHelper extends HelperBase {
         dialogAccept();
     }
 
+    public void delete(ContactData group) {
+        selectContactById(group.getId());
+        initContactDeletion();
+        dialogAccept();
+    }
+
     public boolean isThereAnContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -107,6 +118,7 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
+
     public Set<ContactData> all() {
         Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
@@ -119,5 +131,4 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
-
 }
