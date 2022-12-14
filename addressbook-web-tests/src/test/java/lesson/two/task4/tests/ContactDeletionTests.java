@@ -2,7 +2,6 @@ package lesson.two.task4.tests;
 
 import lesson.two.task4.model.ContactData;
 import lesson.two.task4.model.Contacts;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

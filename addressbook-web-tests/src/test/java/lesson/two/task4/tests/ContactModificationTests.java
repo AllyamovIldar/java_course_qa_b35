@@ -2,12 +2,8 @@ package lesson.two.task4.tests;
 
 import lesson.two.task4.model.ContactData;
 import lesson.two.task4.model.Contacts;
-import lesson.two.task4.model.Groups;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
