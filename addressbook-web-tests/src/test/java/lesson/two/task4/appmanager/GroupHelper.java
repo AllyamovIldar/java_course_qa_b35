@@ -82,7 +82,7 @@ public class GroupHelper extends HelperBase {
     private Groups groupCache = null;
 
     public Groups all() {
-        if (groupCache != null){
+        if (groupCache != null) {
             return new Groups(groupCache);
         }
         Groups groupCache = new Groups();
