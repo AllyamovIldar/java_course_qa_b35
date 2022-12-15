@@ -15,6 +15,16 @@ public class ContactData {
     private String email;
     private String email2;
     private String email3;
+    private String allPhones;
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -100,17 +110,11 @@ public class ContactData {
         return address;
     }
 
-    public String getHomePhone() {
-        return homePhone;
-    }
+    public String getHomePhone() { return homePhone; }
 
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
+    public String getMobilePhone() { return mobilePhone; }
 
-    public String getWorkPhone() {
-        return workPhone;
-    }
+    public String getWorkPhone() { return workPhone; }
 
     public String getEmail() {
         return email;
@@ -126,10 +130,7 @@ public class ContactData {
 
     @Override
     public String toString() {
-        return "ContactData{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+        return "ContactData{" + "firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + '}';
     }
 
     @Override
