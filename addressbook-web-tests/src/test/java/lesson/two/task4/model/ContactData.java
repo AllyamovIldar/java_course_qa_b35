@@ -16,6 +16,7 @@ public class ContactData {
     private String email2;
     private String email3;
     private String allPhones;
+    private String allEmails;
 
     public String getAllPhones() {
         return allPhones;
@@ -90,6 +91,10 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
     public String getFirstname() {
         return firstname;
     }
@@ -116,18 +121,13 @@ public class ContactData {
 
     public String getWorkPhone() { return workPhone; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
-    public String getEmail2() {
-        return email2;
-    }
+    public String getEmail2() { return email2; }
 
-    public String getEmail3() {
-        return email3;
-    }
+    public String getEmail3() { return email3; }
 
+    public String getAllEmails() { return allEmails; }
     @Override
     public String toString() {
         return "ContactData{" + "firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + '}';
@@ -152,4 +152,5 @@ public class ContactData {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
+
 }
