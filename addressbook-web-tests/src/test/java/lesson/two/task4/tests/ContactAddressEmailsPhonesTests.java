@@ -35,7 +35,7 @@ public class ContactAddressEmailsPhonesTests extends TestBase {
     private String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> !s.equals(""))
-                .map(ContactAddressEmailsPhonesTests::cleaned)
+                .map(ContactAddressEmailsPhonesTests::cleanedEmails)
                 .collect(Collectors.joining("\n"));
     }
 
@@ -43,11 +43,14 @@ public class ContactAddressEmailsPhonesTests extends TestBase {
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
                 .stream().filter((s) -> !s.equals(""))
-                .map(ContactAddressEmailsPhonesTests::cleaned)
+                .map(ContactAddressEmailsPhonesTests::cleanedPhones)
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String cleaned(String s) {
+    public static String cleanedPhones(String s) {
         return s.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
-}
+
+    public static String cleanedEmails(String s) {
+        return s.replaceAll("^\\s", "").replaceAll("\\s$", "");
+    }}
