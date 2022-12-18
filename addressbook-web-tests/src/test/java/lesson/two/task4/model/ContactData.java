@@ -1,18 +1,25 @@
 package lesson.two.task4.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
     private int id = Integer.MAX_VALUE;
+    @Expose
     private String firstname;
     private String middlename;
+    @Expose
     private String lastname;
     private String company;
+    @Expose
     private String address;
+    @Expose
     private String homePhone;
     private String mobilePhone;
     private String workPhone;
+    @Expose
     private String email;
     private String email2;
     private String email3;
