@@ -6,10 +6,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Browser;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
+import java.util.Properties;
 
 public class ApplicationManager {
+    private final Properties properties;
     WebDriver wd;
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
@@ -18,9 +23,12 @@ public class ApplicationManager {
 
     public ApplicationManager(Browser browser) {
         this.browser = browser;
+        properties = new Properties();
     }
 
-    public void init() {
+    public void init() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         if (Objects.equals(browser, Browser.CHROME)) {
             // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
             System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
@@ -31,11 +39,11 @@ public class ApplicationManager {
             wd = new FirefoxDriver();
         }
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wd.get("http://localhost/addressbook/");
+        wd.get(properties.getProperty("web.baseUrl"));
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         contactHelper = new ContactHelper(wd);
-        login("admin", "secret");
+        login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
     }
 
     public void login(String username, String password) {
