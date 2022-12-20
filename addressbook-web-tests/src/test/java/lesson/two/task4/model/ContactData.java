@@ -113,6 +113,7 @@ public class ContactData {
         this.allEmails = allEmails;
         return this;
     }
+
     public String getFirstname() {
         return firstname;
     }
@@ -133,19 +134,34 @@ public class ContactData {
         return address;
     }
 
-    public String getHomePhone() { return homePhone; }
+    public String getHomePhone() {
+        return homePhone;
+    }
 
-    public String getMobilePhone() { return mobilePhone; }
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
 
-    public String getWorkPhone() { return workPhone; }
+    public String getWorkPhone() {
+        return workPhone;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getEmail2() { return email2; }
+    public String getEmail2() {
+        return email2;
+    }
 
-    public String getEmail3() { return email3; }
+    public String getEmail3() {
+        return email3;
+    }
 
-    public String getAllEmails() { return allEmails; }
+    public String getAllEmails() {
+        return allEmails;
+    }
+
     @Override
     public String toString() {
         return "ContactData{" + "firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + '}';

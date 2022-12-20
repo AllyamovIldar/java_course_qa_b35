@@ -53,4 +53,5 @@ public class ContactAddressEmailsPhonesTests extends TestBase {
 
     public static String cleanedEmails(String s) {
         return s.replaceAll("^\\s", "").replaceAll("\\s$", "");
-    }}
+    }
+}
