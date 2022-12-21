@@ -1,5 +1,6 @@
 package lesson.two.task4.tests;
 
+import lesson.two.task4.model.ContactData;
 import lesson.two.task4.model.GroupData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,8 +18,7 @@ public class HbConnectionTest {
     @BeforeClass
     protected void setUp() throws Exception {
         // A SessionFactory is set up once for an application!
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure() // configures settings from hibernate.cfg.xml
                 .build();
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
@@ -30,8 +30,8 @@ public class HbConnectionTest {
         }
     }
 
-    @Test
-    public void testHbConnection() {
+    @Test(enabled = false)
+    public void testHbConnectionGroups() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<GroupData> result = session.createQuery("from GroupData").list();
@@ -40,6 +40,17 @@ public class HbConnectionTest {
         }
         session.getTransaction().commit();
         session.close();
+    }
 
+    @Test
+    public void testHbConnectionContacts() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
+        for (ContactData contact : result) {
+            System.out.println(contact);
+        }
+        session.getTransaction().commit();
+        session.close();
     }
 }
