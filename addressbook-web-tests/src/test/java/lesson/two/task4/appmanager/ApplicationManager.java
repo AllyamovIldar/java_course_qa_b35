@@ -20,6 +20,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private Browser browser;
+    private DbHelper dbHelper;
 
     public ApplicationManager(Browser browser) {
         this.browser = browser;
@@ -29,6 +30,7 @@ public class ApplicationManager {
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        dbHelper = new DbHelper();
         if (Objects.equals(browser, Browser.CHROME)) {
             // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
             System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
@@ -71,5 +73,9 @@ public class ApplicationManager {
 
     public ContactHelper contact() {
         return contactHelper;
+    }
+
+    public DbHelper db() {
+        return dbHelper;
     }
 }
