@@ -17,7 +17,7 @@ public class ContactAddressEmailsPhonesTests extends TestBase {
     public void ensurePreconditions() {
         app.contact().returnToHome();
         if (app.contact().all().size() == 0) {
-            app.contact().create(new ContactData().withFirstname("FirstNameExample").withMiddlename("MiddleNameExample").withLastname("LastNameExample").withCompany("TestCompany").withAddress("TestAddress").withHomePhone("8 495 111 22 33").withMobilePhone("+79995554433").withWorkPhone("8-800-987-65-43").withEmail("testmail1@mail.com").withEmail2("testmail2@email.com").withEmail3("testmail3@mailtest.com"));
+            app.contact().create(new ContactData().withFirstName("FirstNameExample").withMiddleName("MiddleNameExample").withLastName("LastNameExample").withCompany("TestCompany").withAddress("TestAddress").withHomePhone("8 495 111 22 33").withMobilePhone("+79995554433").withWorkPhone("8-800-987-65-43").withEmail("testmail1@mail.com").withEmail2("testmail2@email.com").withEmail3("testmail3@mailtest.com"));
         }
         app.contact().returnToHome();
     }

@@ -90,17 +90,17 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withFirstname(String firstname) {
+    public ContactData withFirstName(String firstname) {
         this.firstname = firstname;
         return this;
     }
 
-    public ContactData withMiddlename(String middlename) {
+    public ContactData withMiddleName(String middlename) {
         this.middlename = middlename;
         return this;
     }
 
-    public ContactData withLastname(String lastname) {
+    public ContactData withLastName(String lastname) {
         this.lastname = lastname;
         return this;
     }
@@ -150,15 +150,15 @@ public class ContactData {
         return this;
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public String getMiddlename() {
+    public String getMiddleName() {
         return middlename;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 

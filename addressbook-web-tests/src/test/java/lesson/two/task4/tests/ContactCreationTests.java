@@ -42,7 +42,7 @@ public class ContactCreationTests extends TestBase {
         Contacts before = app.db().contacts();
         /*
         File photo = new File("src/test/resources/jerry.png");
-        ContactData contact = new ContactData().withFirstname("FirstNameExample").withMiddlename("MiddleNameExample").withLastname("LastNameExample").withCompany("TestCompany").withAddress("TestAddress").withHomePhone("84951112233").withMobilePhone("89995554433").withWorkPhone("88009876543").withEmail("testmail1@mail.com").withEmail2("testmail2@email.com").withEmail3("testmail3@mailtest.com").withPhoto(photo);
+        ContactData contact = new ContactData().withFirstName("FirstNameExample").withMiddleName("MiddleNameExample").withLastName("LastNameExample").withCompany("TestCompany").withAddress("TestAddress").withHomePhone("84951112233").withMobilePhone("89995554433").withWorkPhone("88009876543").withEmail("testmail1@mail.com").withEmail2("testmail2@email.com").withEmail3("testmail3@mailtest.com").withPhoto(photo);
         */
         app.contact().create(contact);
         assertThat(app.contact().count(), equalTo(before.size() + 1));
