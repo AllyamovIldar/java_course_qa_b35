@@ -29,7 +29,7 @@ public class DbHelper {
         return new Groups(result);
     }
 
-    public GroupData groupsById(int group_id) {
+    public GroupData groupById(int group_id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         GroupData group = (GroupData) session.createQuery("from GroupData where group_id=:group_id").setParameter("group_id", group_id).getSingleResult();

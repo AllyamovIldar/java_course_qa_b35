@@ -150,6 +150,7 @@ public class ContactData {
         return this;
     }
 
+
     public String getFirstName() {
         return firstname;
     }
@@ -202,6 +203,11 @@ public class ContactData {
         return new Groups(groups);
     }
 
+    public ContactData addedToGroup(GroupData group) {
+        groups.add(group);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ContactData{" + "firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + '}';
@@ -226,5 +232,4 @@ public class ContactData {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
-
 }

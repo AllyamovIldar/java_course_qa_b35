@@ -39,7 +39,7 @@ public class ContactsAddingToGroupTests extends TestBase {
                 app.contact().returnToHome();
             }
             assert groupData != null;
-            GroupData group = app.db().groupsById(groupData.getId());
+            GroupData group = app.db().groupById(groupData.getId());
             ContactData contactWithGroup = app.db().contactsById(contact.getId());
             Assert.assertTrue(contactWithGroup.getGroups().contains(group) && group.getContacts().contains(contactWithGroup));
         }
