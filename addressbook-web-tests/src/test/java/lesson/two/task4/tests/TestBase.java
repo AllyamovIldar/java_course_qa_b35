@@ -1,6 +1,8 @@
 package lesson.two.task4.tests;
 
 import lesson.two.task4.appmanager.ApplicationManager;
+import lesson.two.task4.model.ContactData;
+import lesson.two.task4.model.Contacts;
 import lesson.two.task4.model.GroupData;
 import lesson.two.task4.model.Groups;
 import org.openqa.selenium.remote.Browser;
@@ -48,6 +50,14 @@ public class TestBase {
             Groups dbGroups = app.db().groups();
             Groups uiGroups = app.group().all();
             assertThat(uiGroups, equalTo(dbGroups.stream().map((g) -> new GroupData().withId(g.getId()).withName(g.getName())).collect(Collectors.toSet())));
+        }
+    }
+
+    public void verifyContactListInUi() {
+        if (Boolean.getBoolean("verifyUi")) {
+            Contacts dbContacts = app.db().contacts();
+            Contacts uiContacts = app.contact().all();
+            assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withFirstname(g.getFirstname()).withLastname(g.getLastname())).collect(Collectors.toSet())));
         }
     }
 }
