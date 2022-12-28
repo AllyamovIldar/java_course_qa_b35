@@ -20,6 +20,8 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
 
     private FtpHelper ftp;
+    private MailHelper mailHelper;
+
     public ApplicationManager(Browser browser) {
         this.browser = browser;
         properties = new Properties();
@@ -58,6 +60,7 @@ public class ApplicationManager {
         }
         return ftp;
     }
+
     public WebDriver getDriver() {
         if (wd == null) {
             if (Objects.equals(browser, Browser.CHROME)) {
@@ -74,5 +77,12 @@ public class ApplicationManager {
 
         }
         return wd;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
     }
 }
