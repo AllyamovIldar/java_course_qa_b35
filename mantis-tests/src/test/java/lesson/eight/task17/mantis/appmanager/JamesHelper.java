@@ -1,8 +1,7 @@
 package lesson.eight.task17.mantis.appmanager;
 
-import org.apache.commons.net.telnet.TelnetClient;
 import lesson.eight.task17.mantis.model.MailMessage;
-
+import org.apache.commons.net.telnet.TelnetClient;
 
 import javax.mail.*;
 import java.io.IOException;

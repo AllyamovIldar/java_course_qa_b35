@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MailHelper {
-    private ApplicationManager app;
+    private final ApplicationManager app;
     private final Wiser wiser;
 
     public MailHelper(ApplicationManager app) {
@@ -32,7 +32,7 @@ public class MailHelper {
                 e.printStackTrace();
             }
         }
-        throw new Error("No mail ;(");
+        throw new Error("No mail :(");
     }
 
     public static MailMessage toModelMail(WiserMessage m) {
