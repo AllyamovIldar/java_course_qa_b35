@@ -19,7 +19,7 @@ public class UserHelper extends HelperBase {
         return regex.getText(mailMessage.text);
     }
 
-    public void adminLogIn() {
+    public void logByAdmin() {
         wd.get(app.getProperty("web.baseUrl"));
         type(By.name("username"), app.getProperty("web.adminLogin"));
         click(By.cssSelector("input[type='submit']"));
@@ -27,7 +27,7 @@ public class UserHelper extends HelperBase {
         click(By.cssSelector("input[type='submit']"));
     }
 
-    public void initPasswordUpdate(UserData user) {
+    public void updatingPassword(UserData user) {
         app.goTo().settingUserPage();
         click(By.xpath("//a[contains(@href,'user_id=" + user.getId() + "')]"));
         click(By.xpath("//input[@value='Сбросить пароль']"));

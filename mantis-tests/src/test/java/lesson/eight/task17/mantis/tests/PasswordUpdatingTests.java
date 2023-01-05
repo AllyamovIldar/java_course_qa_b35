@@ -19,9 +19,9 @@ public class PasswordUpdatingTests extends TestBase {
         app.mail().start();
         if (app.db().users().size() == 0) {
             long now = System.currentTimeMillis();
-            String mail = String.format("user%s@localhost.localadmin", now);
             String userName = String.format("user%s", now);
             String password = "password";
+            String mail = String.format("user%s@localhost.localadmin", now);
             app.registration().start(userName, mail);
             List<MailMessage> mailMessageList = app.mail().waitForMail(2, 10000);
             String confirmationLink = app.user().findConfirmationLink(mailMessageList, mail);
@@ -31,15 +31,15 @@ public class PasswordUpdatingTests extends TestBase {
 
     @Test
     public void testPasswordUpdate() throws IOException {
-        String password = "qwerty";
-        Users allUser = app.db().users();
-        UserData user = allUser.iterator().next();
-        app.user().adminLogIn();
-        app.user().initPasswordUpdate(user);
-        List<MailMessage> mailMessageList = app.mail().waitForMail(1, 10000);
-        String confirmationLink = app.user().findConfirmationLink(mailMessageList, user.getEmail());
-        app.user().confirmPasswordUpdateFromEmailLink(user.getUserName(), confirmationLink, password);
-        assertTrue(app.newSession().Login(user.getUserName(), password));
+        Users users = app.db().users();
+        UserData user = users.iterator().next();
+        app.user().logByAdmin();
+        app.user().updatingPassword(user);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
+        String confirmationLink = app.user().findConfirmationLink(mailMessages, user.getEmail());
+        String newPassword = "test";
+        app.user().confirmPasswordUpdateFromEmailLink(user.getUserName(), confirmationLink, newPassword);
+        assertTrue(app.newSession().Login(user.getUserName(), newPassword));
     }
 
     @AfterMethod(alwaysRun = true)
