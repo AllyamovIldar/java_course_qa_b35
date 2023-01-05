@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 
 public class PasswordUpdatingTests extends TestBase {
 
-    //@BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void ensurePrecondition() throws IOException {
         app.mail().start();
         if (app.db().users().size() == 0) {
