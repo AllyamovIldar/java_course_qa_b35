@@ -19,12 +19,12 @@ public class PasswordUpdatingTests extends TestBase {
         app.mail().start();
         if (app.db().users().size() == 0) {
             long now = System.currentTimeMillis();
-            String userName = String.format("user%s", now);
+            String user = String.format("user%s", now);
             String password = "password";
-            String mail = String.format("user%s@localhost.localadmin", now);
-            app.registration().start(userName, mail);
+            String email = String.format("user%s@localhost.localadmin", now);
+            app.registration().start(user, email);
             List<MailMessage> mailMessageList = app.mail().waitForMail(2, 10000);
-            String confirmationLink = app.user().findConfirmationLink(mailMessageList, mail);
+            String confirmationLink = app.user().findConfirmationLink(mailMessageList, email);
             app.registration().finish(confirmationLink, password);
         }
     }

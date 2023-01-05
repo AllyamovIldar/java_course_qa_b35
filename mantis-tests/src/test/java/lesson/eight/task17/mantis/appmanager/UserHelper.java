@@ -38,7 +38,6 @@ public class UserHelper extends HelperBase {
         type(By.name("realname"), userName);
         type(By.name("password"), password);
         type(By.name("password_confirm"), password);
-        // click(By.xpath("//input[@value='Update User']"));
         click(By.xpath("//*[@id=\"account-update-form\"]/fieldset/span/button/span"));
     }
 }
