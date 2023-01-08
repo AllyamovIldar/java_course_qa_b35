@@ -30,6 +30,7 @@ public class ApplicationManager implements WebDriver {
     private UserHelper userHelper;
     private SessionHelper sessionHelper;
     private DbHelper dbHelper;
+    private SoapHelper soapHelper;
 
     public ApplicationManager(Browser browser) {
         this.browser = browser;
@@ -126,6 +127,13 @@ public class ApplicationManager implements WebDriver {
             navigationHelper = new NavigationHelper(this);
         }
         return navigationHelper;
+    }
+
+    public SoapHelper soap() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 
     @Override
