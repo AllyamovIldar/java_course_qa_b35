@@ -6,6 +6,7 @@ public class Issue {
     private String description;
     private Project project;
 
+
     public int getId() {
         return id;
     }
