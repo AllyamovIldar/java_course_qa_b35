@@ -1,4 +1,4 @@
-package lesson.nine.task20.rest;
+package lesson.nine.task20.rest.model;
 
 import java.util.Objects;
 
@@ -6,6 +6,7 @@ public class Issue {
     private int id;
     private String subject;
     private String description;
+    private String state_name;
 
     public int getId() {
         return id;
@@ -32,6 +33,15 @@ public class Issue {
 
     public Issue withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getStatus() {
+        return state_name;
+    }
+
+    public Issue withStatus(String status) {
+        this.state_name = status;
         return this;
     }
 
