@@ -15,14 +15,14 @@ public class DistanceTests {
     public void testAssertNotEquals() {
         Point pointVal1 = new Point(3, 5);
         Point pointVal2 = new Point(5, 8);
-        // Assert.assertNotEquals(pointVal2.distance2(pointVal1), 7);
-        Assert.assertNotEquals(pointVal2.distance2(pointVal1), 8);
+        Assert.assertNotEquals(pointVal2.distance2(pointVal1), 7);
     }
 
     @Test
     public void testDoubleX() {
         Point pointVal1 = new Point(6, 0);
-        Assert.assertEquals(pointVal1.x, 6.0);
+        // Assert.assertEquals(pointVal1.x, 6.0);
+        Assert.assertEquals(pointVal1.x, 7.0);
     }
 
     @Test
