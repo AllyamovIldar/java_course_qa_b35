@@ -20,9 +20,8 @@ public class DistanceTests {
 
     @Test
     public void testDoubleX() {
-        Point pointVal1 = new Point(6, 0);
-        // Assert.assertEquals(pointVal1.x, 6.0);
-        Assert.assertEquals(pointVal1.x, 7.0);
+        Point pointVal1 = new Point(6, 0);Assert.assertEquals(pointVal1.x, 6.0);
+        Assert.assertEquals(pointVal1.x, 6.0);
     }
 
     @Test
