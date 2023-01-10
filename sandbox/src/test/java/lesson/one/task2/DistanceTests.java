@@ -15,7 +15,8 @@ public class DistanceTests {
     public void testAssertNotEquals() {
         Point pointVal1 = new Point(3, 5);
         Point pointVal2 = new Point(5, 8);
-        Assert.assertNotEquals(pointVal2.distance2(pointVal1), 7);
+        // Assert.assertNotEquals(pointVal2.distance2(pointVal1), 7);
+        Assert.assertNotEquals(pointVal2.distance2(pointVal1), 8);
     }
 
     @Test
