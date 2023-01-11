@@ -1,11 +1,10 @@
 package lesson.two.task4.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -13,9 +12,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
-import java.util.Objects;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     private final Properties properties;
@@ -23,10 +21,10 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private Browser browser;
+    private String browser;
     private DbHelper dbHelper;
 
-    public ApplicationManager(Browser browser) {
+    public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
@@ -36,21 +34,22 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         dbHelper = new DbHelper();
         if ("".equals(properties.getProperty("selenium.server"))) {
-            if (Objects.equals(browser, Browser.CHROME)) {
+            if (browser.equals(BrowserType.CHROME)) {
                 // Драйвер для Chrome взять отсюда (https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
                 System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
                 wd = new ChromeDriver();
-            } else if (Objects.equals(browser, Browser.FIREFOX)) {
+            } else if (browser.equals(BrowserType.FIREFOX)) {
                 // Драйвер для Firefox взять отсюда (https://github.com/mozilla/geckodriver/releases) и закинуть в папку по пути переменной среды PATH, например в эту (C:\Windows\System32).
                 System.setProperty("webdriver.gecko.driver", "C:\\Windows\\System32\\geckodriver.exe");
                 wd = new FirefoxDriver();
             }
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setBrowserName(String.valueOf(browser));
+            capabilities.setBrowserName(browser);
             wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        // wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.get(properties.getProperty("web.baseUrl"));
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);

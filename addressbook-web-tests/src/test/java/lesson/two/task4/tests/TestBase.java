@@ -5,7 +5,7 @@ import lesson.two.task4.model.ContactData;
 import lesson.two.task4.model.Contacts;
 import lesson.two.task4.model.GroupData;
 import lesson.two.task4.model.Groups;
-import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
-    protected static final ApplicationManager app = new ApplicationManager(Browser.CHROME);
+    protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
